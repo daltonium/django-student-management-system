@@ -1,0 +1,112 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+
+venv/
+env/
+ENV/
+.venv/
+
+# Django
+
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Django migrations (optional)
+
+# */migrations/*
+
+# !*/migrations/**init**.py
+
+# Static and media files
+
+/staticfiles/
+/media/
+
+# Environment variables
+
+.env
+.env.*
+
+# PostgreSQL
+
+*.sql
+*.dump
+*.backup
+
+# IDE files
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Testing / coverage
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# mypy / type checking
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+
+.pytest_cache/
+
+# Celery
+
+celerybeat-schedule
+celerybeat.pid
+
+# Logs
+
+logs/
+*.log
+
+# Docker
+
+*.pid
+*.seed
+*.pid.lock
