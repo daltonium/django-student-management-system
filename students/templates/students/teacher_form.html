@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>
+  {% if object %}Edit Teacher{% else %}Add Teacher{% endif %}
+</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'students:teacher-list' %}">Back to list</a>
+{% endblock %}

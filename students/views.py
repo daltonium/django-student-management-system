@@ -1,9 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from .models import Student
-from .forms import StudentForm
-
+from .models import Student, Teacher, Course
+from .forms import StudentForm, TeacherForm
 class StudentListView(ListView):
     model = Student
     template_name = 'students/student_list.html'
@@ -26,3 +25,29 @@ class StudentDeleteView(DeleteView):
     model = Student
     template_name = 'students/student_confirm_delete.html'
     success_url = reverse_lazy('students:student-list')
+
+class TeacherListView(ListView):
+    model = Teacher
+    template_name = 'students/teacher_list.html'
+    context_object_name = 'teachers'
+    ordering = ['department', 'last_name']
+
+
+class TeacherCreateView(CreateView):
+    model = Teacher
+    form_class = TeacherForm
+    template_name = 'students/teacher_form.html'
+    success_url = reverse_lazy('students:teacher-list')
+
+
+class TeacherUpdateView(UpdateView):
+    model = Teacher
+    form_class = TeacherForm
+    template_name = 'students/teacher_form.html'
+    success_url = reverse_lazy('students:teacher-list')
+
+
+class TeacherDeleteView(DeleteView):
+    model = Teacher
+    template_name = 'students/teacher_confirm_delete.html'
+    success_url = reverse_lazy('students:teacher-list')
