@@ -15,3 +15,7 @@ class TeacherForm(forms.ModelForm):
         model = Teacher
         fields = ['first_name', 'last_name', 'email', 'department']
     
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['title', 'code', 'teacher']

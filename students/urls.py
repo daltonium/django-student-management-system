@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     StudentListView, StudentCreateView, StudentUpdateView, StudentDeleteView,
     TeacherListView, TeacherCreateView, TeacherUpdateView, TeacherDeleteView,
+    CourseListView, CourseCreateView, CourseUpdateView, CourseDeleteView,
 )
 
 app_name = 'students'
@@ -18,4 +19,10 @@ urlpatterns = [
     path('teachers/add/', TeacherCreateView.as_view(), name='teacher-add'),
     path('teachers/<int:pk>/edit/', TeacherUpdateView.as_view(), name='teacher-edit'),
     path('teachers/<int:pk>/delete/', TeacherDeleteView.as_view(), name='teacher-delete'),
+
+    # Courses
+    path('courses/', CourseListView.as_view(), name='course-list'),
+    path('courses/add/', CourseCreateView.as_view(), name='course-add'),
+    path('courses/<int:pk>/edit/', CourseUpdateView.as_view(), name='course-edit'),
+    path('courses/<int:pk>/delete/', CourseDeleteView.as_view(), name='course-delete'),
 ]
