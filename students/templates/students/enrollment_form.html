@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Enroll a Student</h1>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Enroll</button>
+</form>
+
+{% if form.non_field_errors %}
+  <p style="color:red;">{{ form.non_field_errors }}</p>
+{% endif %}
+
+<a href="{% url 'students:enrollment-list' %}">Back to list</a>
+{% endblock %}

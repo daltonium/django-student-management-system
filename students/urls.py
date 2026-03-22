@@ -3,6 +3,7 @@ from .views import (
     StudentListView, StudentCreateView, StudentUpdateView, StudentDeleteView,
     TeacherListView, TeacherCreateView, TeacherUpdateView, TeacherDeleteView,
     CourseListView, CourseCreateView, CourseUpdateView, CourseDeleteView,
+    EnrollmentListView, EnrollmentCreateView, EnrollmentDeleteView,
 )
 
 app_name = 'students'
@@ -25,4 +26,9 @@ urlpatterns = [
     path('courses/add/', CourseCreateView.as_view(), name='course-add'),
     path('courses/<int:pk>/edit/', CourseUpdateView.as_view(), name='course-edit'),
     path('courses/<int:pk>/delete/', CourseDeleteView.as_view(), name='course-delete'),
+    
+        # Enrollments
+    path('enrollments/', EnrollmentListView.as_view(), name='enrollment-list'),
+    path('enrollments/add/', EnrollmentCreateView.as_view(), name='enrollment-add'),
+    path('enrollments/<int:pk>/delete/', EnrollmentDeleteView.as_view(), name='enrollment-delete'),
 ]
