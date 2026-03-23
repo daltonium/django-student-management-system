@@ -1,5 +1,5 @@
 from django import forms
-from .models import Student, Teacher, Course, Enrollment
+from .models import Student, Teacher, Course, Enrollment, Grade
 
 
 class StudentForm(forms.ModelForm):
@@ -24,3 +24,16 @@ class EnrollmentForm(forms.ModelForm):
     class Meta:
         model = Enrollment
         fields = ['student', 'course']
+        
+class GradeForm(forms.ModelForm):
+    class Meta:
+        model = Grade
+        fields = ['enrollment', 'score', 'letter_grade', 'remarks']
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Only show enrollments that don't have a grade yet
+        graded_ids = Grade.objects.values_list('enrollment_id', flat=True)
+        self.fields['enrollment'].queryset = Enrollment.objects.exclude(
+            id__in=graded_ids
+        ).select_related('student', 'course')
