@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Reports</h1>
+
+<h2>Student Performance</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Enrollments</th>
+      <th>Avg Score</th>
+      <th>Highest</th>
+      <th>Lowest</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in student_report %}
+      <tr>
+        <td>{{ student }}</td>
+        <td>{{ student.total_enrollments }}</td>
+        <td>
+          {% if student.average_score %}
+            {{ student.average_score|floatformat:2 }}
+          {% else %}
+            No grades yet
+          {% endif %}
+        </td>
+        <td>{{ student.highest_score|default:"-" }}</td>
+        <td>{{ student.lowest_score|default:"-" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No students found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2>Course Statistics</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Enrolled Students</th>
+      <th>Avg Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for course in course_report %}
+      <tr>
+        <td>{{ course }}</td>
+        <td>{{ course.total_students }}</td>
+        <td>{{ course.average_score|floatformat:2|default:"-" }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="3">No courses found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

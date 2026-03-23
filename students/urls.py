@@ -4,7 +4,7 @@ from .views import (
     TeacherListView, TeacherCreateView, TeacherUpdateView, TeacherDeleteView,
     CourseListView, CourseCreateView, CourseUpdateView, CourseDeleteView,
     EnrollmentListView, EnrollmentCreateView, EnrollmentDeleteView,
-    GradeListView, GradeCreateView, GradeUpdateView, GradeDeleteView,
+    GradeListView, GradeCreateView, GradeUpdateView, GradeDeleteView, ReportView
 )
 
 app_name = 'students'
@@ -38,5 +38,8 @@ urlpatterns = [
     path('grades/add/', GradeCreateView.as_view(), name='grade-add'),
     path('grades/<int:pk>/edit/', GradeUpdateView.as_view(), name='grade-edit'),
     path('grades/<int:pk>/delete/', GradeDeleteView.as_view(), name='grade-delete'),
+    
+    # Reports
+    path('reports/', ReportView.as_view(), name='reports'),
     
 ]

@@ -1,10 +1,9 @@
+from django.db.models import Avg, Count, Max, Min
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
+
 from .models import Student, Teacher, Course, Enrollment, Grade
 from .forms import StudentForm, TeacherForm, CourseForm, EnrollmentForm, GradeForm
-
-from django.db.models import Avg, Count, Max, Min
-
-from .models import Student, Teacher, Course, Enrollment
-from .forms import StudentForm, TeacherForm, CourseForm, EnrollmentForm
 class StudentListView(ListView):
     model = Student
     template_name = 'students/student_list.html'
@@ -146,3 +145,24 @@ class GradeDeleteView(DeleteView):
     template_name = 'students/grade_confirm_delete.html'
     success_url = reverse_lazy('students:grade-list')
     
+class ReportView(TemplateView):
+    template_name = 'students/report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Per-student report
+        context['student_report'] = Student.objects.annotate(
+            total_enrollments=Count('enrollments'),
+            average_score=Avg('enrollments__grade__score'),
+            highest_score=Max('enrollments__grade__score'),
+            lowest_score=Min('enrollments__grade__score'),
+        ).order_by('last_name')
+
+        # Course-level stats
+        context['course_report'] = Course.objects.annotate(
+            total_students=Count('enrollments'),
+            average_score=Avg('enrollments__grade__score'),
+        ).order_by('code')
+
+        return context
