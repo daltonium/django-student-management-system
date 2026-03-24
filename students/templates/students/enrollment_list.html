@@ -1,34 +1,40 @@
 {% extends "base.html" %}
+{% block title %}Enrollments{% endblock %}
 
 {% block content %}
-<h1>Enrollments</h1>
-
-<a href="{% url 'students:enrollment-add' %}">Enroll a Student</a>
+<div class="page-header">
+    <h1>Enrollments</h1>
+    <a href="{% url 'students:enrollment-add' %}" class="btn">Enroll Student</a>
+</div>
 
 <table>
-  <thead>
-    <tr>
-      <th>Student</th>
-      <th>Course</th>
-      <th>Teacher</th>
-      <th>Enrolled On</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for enrollment in enrollments %}
-      <tr>
-        <td>{{ enrollment.student }}</td>
-        <td>{{ enrollment.course.code }} - {{ enrollment.course.title }}</td>
-        <td>{{ enrollment.course.teacher }}</td>
-        <td>{{ enrollment.enrolled_on }}</td>
-        <td>
-          <a href="{% url 'students:enrollment-delete' enrollment.pk %}">Remove</a>
-        </td>
-      </tr>
-    {% empty %}
-      <tr><td colspan="5">No enrollments yet.</td></tr>
-    {% endfor %}
-  </tbody>
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Teacher</th>
+            <th>Enrolled On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enrollment in enrollments %}
+        <tr>
+            <td>{{ enrollment.student }}</td>
+            <td>{{ enrollment.course.code }} — {{ enrollment.course.title }}</td>
+            <td>{{ enrollment.course.teacher }}</td>
+            <td>{{ enrollment.enrolled_on }}</td>
+            <td>
+                <div class="actions">
+                    <a href="{% url 'students:enrollment-delete' enrollment.pk %}" class="delete-link">Remove</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="empty-state">No enrollments yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

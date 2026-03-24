@@ -1,15 +1,23 @@
 {% extends "base.html" %}
+{% block title %}{% if object %}Edit Grade{% else %}Add Grade{% endif %}{% endblock %}
 
 {% block content %}
-<h1>
-  {% if object %}Edit Grade{% else %}Add Grade{% endif %}
-</h1>
+<div class="page-header">
+    <h1>{% if object %}Edit Grade{% else %}Add Grade{% endif %}</h1>
+</div>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+<div class="form-wrapper">
+    {% if form.non_field_errors %}
+        <div class="error-message">{{ form.non_field_errors }}</div>
+    {% endif %}
 
-<a href="{% url 'students:grade-list' %}">Back to list</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="display:flex; gap:1rem; margin-top:1rem;">
+            <button type="submit">Save</button>
+            <a href="{% url 'students:grade-list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

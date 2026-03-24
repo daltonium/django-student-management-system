@@ -1,15 +1,23 @@
 {% extends "base.html" %}
+{% block title %}Delete Grade{% endblock %}
 
 {% block content %}
-<h1>Delete Grade</h1>
+<div class="page-header">
+    <h1>Delete Grade</h1>
+</div>
 
-<p>Delete grade for <strong>{{ object.enrollment.student }}</strong>
-   in <strong>{{ object.enrollment.course }}</strong>?</p>
+<p style="color:#636E72; margin-bottom:1.5rem;">
+    Delete grade for
+    <strong style="color:#DFE6E9;">{{ object.enrollment.student }}</strong>
+    in <strong style="color:#DFE6E9;">{{ object.enrollment.course }}</strong>?
+    This action cannot be undone.
+</p>
 
 <form method="post">
-  {% csrf_token %}
-  <button type="submit">Yes, delete</button>
+    {% csrf_token %}
+    <div style="display:flex; gap:1rem;">
+        <button type="submit" class="btn btn-danger">Yes, delete</button>
+        <a href="{% url 'students:grade-list' %}" class="btn btn-secondary">Cancel</a>
+    </div>
 </form>
-
-<a href="{% url 'students:grade-list' %}">Cancel</a>
 {% endblock %}

@@ -1,0 +1,259 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1E1E1E;
+    color: #DFE6E9;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: #D63031;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
+
+nav {
+    background-color: #1E1E1E;
+    border-bottom: 2px solid #D63031;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 56px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .brand {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #DFE6E9;
+    letter-spacing: 0.5px;
+    margin-right: auto;
+}
+
+nav a {
+    color: #DFE6E9;
+    font-size: 0.9rem;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    border-bottom-color: #D63031;
+    text-decoration: none;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #DFE6E9;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #D63031;
+    padding-left: 0.75rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #DFE6E9;
+    margin: 2rem 0 1rem;
+    border-left: 3px solid #636E72;
+    padding-left: 0.75rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: #2a2a2a;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #2f2f2f;
+    border-bottom: 2px solid #D63031;
+}
+
+th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #636E72;
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #2f2f2f;
+    font-size: 0.95rem;
+    color: #DFE6E9;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background-color: #333333;
+}
+
+button,
+.btn {
+    background-color: #D63031;
+    color: #DFE6E9;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    display: inline-block;
+}
+
+button:hover,
+.btn:hover {
+    opacity: 0.85;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #636E72;
+    color: #636E72;
+}
+
+.btn-secondary:hover {
+    border-color: #DFE6E9;
+    color: #DFE6E9;
+}
+
+.btn-danger {
+    background-color: transparent;
+    border: 1px solid #D63031;
+    color: #D63031;
+}
+
+.btn-danger:hover {
+    background-color: #D63031;
+    color: #DFE6E9;
+}
+
+form p {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    color: #636E72;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    background-color: #2a2a2a;
+    border: 1px solid #636E72;
+    color: #DFE6E9;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #D63031;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+select option {
+    background-color: #2a2a2a;
+    color: #DFE6E9;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.actions a {
+    font-size: 0.85rem;
+}
+
+.actions a.delete-link {
+    color: #D63031;
+}
+
+.actions a.edit-link {
+    color: #636E72;
+}
+
+.actions a.edit-link:hover {
+    color: #DFE6E9;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: #636E72;
+    padding: 3rem;
+    font-size: 0.95rem;
+}
+
+.error-message {
+    background-color: rgba(214, 48, 49, 0.1);
+    border: 1px solid #D63031;
+    color: #D63031;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.form-wrapper {
+    max-width: 560px;
+}

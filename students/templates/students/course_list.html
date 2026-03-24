@@ -1,34 +1,39 @@
 {% extends "base.html" %}
+{% block title %}Courses{% endblock %}
 
 {% block content %}
-<h1>Courses</h1>
-
-<a href="{% url 'students:course-add' %}">Add Course</a>
+<div class="page-header">
+    <h1>Courses</h1>
+    <a href="{% url 'students:course-add' %}" class="btn">Add Course</a>
+</div>
 
 <table>
-  <thead>
-    <tr>
-      <th>Code</th>
-      <th>Title</th>
-      <th>Teacher</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for course in courses %}
-      <tr>
-        <td>{{ course.code }}</td>
-        <td>{{ course.title }}</td>
-        <td>{{ course.teacher }}</td>
-        <td>
-          <a href="{% url 'students:course-edit' course.pk %}">Edit</a>
-          |
-          <a href="{% url 'students:course-delete' course.pk %}">Delete</a>
-        </td>
-      </tr>
-    {% empty %}
-      <tr><td colspan="4">No courses yet.</td></tr>
-    {% endfor %}
-  </tbody>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Teacher</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.code }}</td>
+            <td>{{ course.title }}</td>
+            <td>{{ course.teacher }}</td>
+            <td>
+                <div class="actions">
+                    <a href="{% url 'students:course-edit' course.pk %}" class="edit-link">Edit</a>
+                    <a href="{% url 'students:course-delete' course.pk %}" class="delete-link">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="empty-state">No courses yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}

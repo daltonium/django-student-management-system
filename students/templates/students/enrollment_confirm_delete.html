@@ -1,14 +1,22 @@
 {% extends "base.html" %}
+{% block title %}Remove Enrollment{% endblock %}
 
 {% block content %}
-<h1>Remove Enrollment</h1>
+<div class="page-header">
+    <h1>Remove Enrollment</h1>
+</div>
 
-<p>Remove <strong>{{ object.student }}</strong> from <strong>{{ object.course }}</strong>?</p>
+<p style="color:#636E72; margin-bottom:1.5rem;">
+    Remove <strong style="color:#DFE6E9;">{{ object.student }}</strong>
+    from <strong style="color:#DFE6E9;">{{ object.course }}</strong>?
+    This action cannot be undone.
+</p>
 
 <form method="post">
-  {% csrf_token %}
-  <button type="submit">Yes, remove</button>
+    {% csrf_token %}
+    <div style="display:flex; gap:1rem;">
+        <button type="submit" class="btn btn-danger">Yes, remove</button>
+        <a href="{% url 'students:enrollment-list' %}" class="btn btn-secondary">Cancel</a>
+    </div>
 </form>
-
-<a href="{% url 'students:enrollment-list' %}">Cancel</a>
 {% endblock %}

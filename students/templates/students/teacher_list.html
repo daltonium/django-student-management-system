@@ -1,34 +1,39 @@
 {% extends "base.html" %}
+{% block title %}Teachers{% endblock %}
 
 {% block content %}
-<h1>Teachers</h1>
-
-<a href="{% url 'students:teacher-add' %}">Add Teacher</a>
+<div class="page-header">
+    <h1>Teachers</h1>
+    <a href="{% url 'students:teacher-add' %}" class="btn">Add Teacher</a>
+</div>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for teacher in teachers %}
-      <tr>
-        <td>{{ teacher.first_name }} {{ teacher.last_name }}</td>
-        <td>{{ teacher.email }}</td>
-        <td>{{ teacher.department }}</td>
-        <td>
-          <a href="{% url 'students:teacher-edit' teacher.pk %}">Edit</a>
-          |
-          <a href="{% url 'students:teacher-delete' teacher.pk %}">Delete</a>
-        </td>
-      </tr>
-    {% empty %}
-      <tr><td colspan="4">No teachers yet.</td></tr>
-    {% endfor %}
-  </tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>{{ teacher.first_name }} {{ teacher.last_name }}</td>
+            <td>{{ teacher.email }}</td>
+            <td>{{ teacher.department }}</td>
+            <td>
+                <div class="actions">
+                    <a href="{% url 'students:teacher-edit' teacher.pk %}" class="edit-link">Edit</a>
+                    <a href="{% url 'students:teacher-delete' teacher.pk %}" class="delete-link">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="empty-state">No teachers yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 {% endblock %}
