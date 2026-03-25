@@ -257,3 +257,43 @@ select option {
 .form-wrapper {
     max-width: 560px;
 }
+
+/* Stat Cards */
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: #2a2a2a;
+    border: 1px solid #2f2f2f;
+    border-top: 3px solid #D63031;
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #DFE6E9;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #636E72;
+}
+
+/* Responsive — stack cards on small screens */
+@media (max-width: 640px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

@@ -166,3 +166,29 @@ class ReportView(TemplateView):
         ).order_by('code')
 
         return context
+
+class DashboardView(TemplateView):
+    template_name = 'dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Stat card counts
+        context['total_students'] = Student.objects.count()
+        context['total_teachers'] = Teacher.objects.count()
+        context['total_courses'] = Course.objects.count()
+        context['total_enrollments'] = Enrollment.objects.count()
+
+        # Recent enrollments — last 5
+        context['recent_enrollments'] = Enrollment.objects.select_related(
+            'student', 'course'
+        ).order_by('-enrolled_on')[:5]
+
+        # Top 5 students by average score
+        context['top_students'] = Student.objects.annotate(
+            average_score=Avg('enrollments__grade__score')
+        ).filter(
+            average_score__isnull=False
+        ).order_by('-average_score')[:5]
+
+        return context

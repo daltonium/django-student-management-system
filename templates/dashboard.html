@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Dashboard</h1>
+</div>
+
+<!-- Stat Cards -->
+<div class="stat-grid">
+    <div class="stat-card">
+        <span class="stat-number">{{ total_students }}</span>
+        <span class="stat-label">Students</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ total_teachers }}</span>
+        <span class="stat-label">Teachers</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ total_courses }}</span>
+        <span class="stat-label">Courses</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-number">{{ total_enrollments }}</span>
+        <span class="stat-label">Enrollments</span>
+    </div>
+</div>
+
+<!-- Recent Enrollments -->
+<h2>Recent Enrollments</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Course</th>
+            <th>Enrolled On</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enrollment in recent_enrollments %}
+        <tr>
+            <td>{{ enrollment.student }}</td>
+            <td>{{ enrollment.course }}</td>
+            <td>{{ enrollment.enrolled_on }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="empty-state">No enrollments yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Top Students -->
+<h2>Top Students by Score</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Avg Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in top_students %}
+        <tr>
+            <td>{{ student }}</td>
+            <td>{{ student.average_score|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2" class="empty-state">No graded students yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
