@@ -110,3 +110,8 @@ logs/
 *.pid
 *.seed
 *.pid.lock
+
+.env
+venv/
+__pycache__/
+*.pyc

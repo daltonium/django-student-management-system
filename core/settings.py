@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z*ovqy6x#vtne39j+7i5=(xb*vmfy*f&oj-=!wlvh3_l%fm+0h'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-dev-key-only')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost 127.0.0.1').split()
 
 
 # Application definition
@@ -76,12 +76,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',  # tells Django: use Postgres
-        'NAME': 'student_mgmt',                     # the DB you created
-        'USER': 'student_admin',                    # the user you created
-        'PASSWORD': '2006',
-        'HOST': 'localhost',
-        'PORT': '5432',                             # default Postgres port
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB', 'student_mgmt'),
+        'USER': os.environ.get('POSTGRES_USER', 'student_admin'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'yourpassword'),
+        'HOST': os.environ.get('DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
 
